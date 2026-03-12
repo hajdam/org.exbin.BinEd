@@ -1,7 +1,7 @@
 {
   "app-id" : "org.exbin.BinEd",
   "runtime" : "org.freedesktop.Platform",
-  "runtime-version" : "24.08",
+  "runtime-version" : "25.08",
   "sdk" : "org.freedesktop.Sdk",
   "sdk-extensions" : [ "org.freedesktop.Sdk.Extension.openjdk" ],
   "command": "org.exbin.BinEd",
@@ -22,27 +22,16 @@
       "buildsystem": "simple",
       "build-commands": [
         "mkdir -p ${FLATPAK_DEST}/bined",
-        "cp -r * ${FLATPAK_DEST}/bined"
+        "cp -r * ${FLATPAK_DEST}/bined",
+        "install -Dm755 dist/flatpak/${FLATPAK_ID} ${FLATPAK_DEST}/bin/${FLATPAK_ID}",
+        "install -Dm644 dist/flatpak/${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
+        "install -Dm644 dist/flatpak/${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml",
+        "install -Dm0644 dist/flatpak/${FLATPAK_ID}.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
       ],
       "sources": [{
         "type": "archive",
-        "url": "https://bined.exbin.org/download/bined-0.2.4.zip",
-        "sha256": "7c573862c7cca8082b894042a9c7a2c8d9e57106bccdf54d4b33db94cdc7488f"
-      }]
-    },
-    {
-      "name": "bined-startup",
-      "buildsystem": "simple",
-      "build-commands": [
-        "install -Dm755 ${FLATPAK_ID} ${FLATPAK_DEST}/bin/${FLATPAK_ID}",
-        "install -Dm644 ${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
-        "install -Dm644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml",
-        "install -Dm0644 ${FLATPAK_ID}.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
-      ],
-      "sources": [{
-        "type": "archive",
-        "url": "https://bined.exbin.org/download/bined-flathub-0.2.4.src.zip",
-        "sha256": "5f92584a331f6ba7f519be985aed91b46b077810917b96de23beb359bfcb01e9"
+        "url": "https://bined.exbin.org/download/bined-0.2.5.zip",
+        "sha256": "03019240af14d62092c211a9ae45f3282a7c9b00f3613e9ca6f7160271a3669e"
       }]
     }
   ]
